@@ -1,0 +1,9 @@
+[package]
+name = "Racman"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+tokio = { version = "1", features = ["full"] }
+adw = { package = "libadwaita", version = "0.7.1", features = ["v1_6", "v1_4"] }
+gtk = { package = "gtk4", version = "0.9.5" }
