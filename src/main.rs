@@ -1,8 +1,7 @@
 use adw::{prelude::*, ViewStack, ViewSwitcher};
 use adw::{Application, ApplicationWindow, HeaderBar};
 use gtk::{
-    Box, Button, MenuButton, Popover, PopoverMenu, ScrolledWindow, SearchBar, SearchEntry,
-    ToggleButton,
+    Box, Button, Label, MenuButton, Popover, ScrolledWindow, SearchBar, SearchEntry, ToggleButton,
 };
 use std::fmt::Display;
 use std::future::Future;
@@ -78,13 +77,27 @@ fn ui() {
         search_button.set_icon_name("system-search-symbolic");
         let menu_button = MenuButton::new();
         menu_button.set_icon_name("open-menu-symbolic");
-        let popover_menu = PopoverMenu::builder().build();
-        popover_menu.add_child(child, "Software Repositories");
-        popover_menu.add_child(child, "Keyboard Shortcuts");
-        popover_menu.add_child(child, "Preferences");
-        popover_menu.add_child(child, "About Software");
+        let button_sr = Button::builder().label("Software Repositories").build();
+        let button_sr = Label::new(Some("Software Repositories"));
+        let button_sr3 = Label::new(Some("Software Repositories"));
+        let button_sr2 = Label::new(Some("Software Repositories"));
+        let button_sr1 = Label::new(Some("Software Repositories"));
+        let button_ks = Button::builder().label("Keyboard Shortcuts").build();
+        let button_p = Button::builder().label("Preferences").build();
+        let button_as = Button::builder().label("About Software").build();
+
+        let popover = Popover::new();
+        popover.set_child(Some(&button_sr));
+        popover.set_child(Some(&button_sr1));
+        popover.set_child(Some(&button_sr2));
+        popover.set_child(Some(&button_sr3));
+        //.child(&button_ks)
+        //.child(&button_p)
+        //.child(&button_as)
+        //.build().chi;
+
         view_switcher.set_stack(Some(&view_stack));
-        menu_button.set_popover(Some(&popover_menu));
+        menu_button.set_popover(Some(&popover));
         header_bar.pack_start(&search_button);
         header_bar.pack_end(&menu_button);
         let search_bar = SearchBar::new();
